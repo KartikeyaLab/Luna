@@ -81,17 +81,17 @@ Here's how to get Luna working on your computer:
 
 ### Step 5: Talk to Luna
 
-1.  **Open the Website:** Open your web browser (like Chrome, Firefox, or Safari) and go to the address you saw in the terminal (usually `http://127.0.0.1:5000/`). You should see Luna's website.
-2.  **Send Commands:** Type your questions or things you want Luna to do in the text box on the website.
-3.  **See Luna's Replies:** Luna's answers will appear on the website. You might also hear Luna speak for some actions.
-4.  **Try Different Things:** Try out the features like setting reminders, playing music, searching the web, and asking questions.
+1.  **Open the Server OR run clap.py:** Open your web browser (like Chrome, Firefox, or Safari) and go to the address you saw in the terminal (usually `http://127.0.0.1:5000/`). You should see Luna's website OR simply run clap.py
+
+2.  **See Luna's Replies:** Luna's answers will appear on the website. You might also hear Luna speak for some actions.
+3.  **Try Different Things:** Try out the features like setting reminders, playing music, searching the web, and asking questions.
 
 ## 💡 How to Talk to Luna
 
 Once the website is open in your browser:
 
 1.  **Using Your Voice:** If your browser lets you and you give permission for the website to use your microphone, Luna will start listening. Just speak your commands or questions. The website will show "Listening..." when Luna is trying to hear you and "Speaking..." when Luna is talking back.
-2.  **Typing:** Type your message in the box at the bottom of the page and press the Enter key. There might also be a button to click to send your message.
+
 3.  **Seeing the Replies:** Luna's text answers will show up in the chat area, and it will look like Luna is typing. If Luna is set up to speak, you will also hear the answer.
 4.  **Setting Reminders:** Say or type something like "remind me to check email in 20 minutes". The reminder will appear in the "Reminder" section when the time comes.
 5.  **Playing Music:** Try saying or typing "play some music" (this assumes you have music files set up for Luna to play).
