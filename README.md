@@ -25,7 +25,7 @@ Luna has many helpful features that use both its smart brain and the website:
       * You can tell Luna to remind you of things using simple language (for example, "remind me to call mom in 10 minutes").
       * The `app.py` part of Luna will remember and tell you when it's time.
       * The website will show your reminders in a special "Reminder" area and also make a sound.
-  * **🎶 Playing Music You Have (Local Music):**
+  * **🎶 Playing Music You Have (Local Music + Youtube):**
       * The `app.py` part of Luna can play music files (like MP3s) that are on your computer when you ask (for example, "play some music").
       * Basic controls like play, pause, and stop are handled by Luna's brain.
       * *(Note: You can't directly control the music on the website right now, you need to use voice commands.)*
