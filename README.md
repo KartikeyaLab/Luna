@@ -16,9 +16,7 @@ Luna has many helpful features that use both its smart brain and the website:
       * You can speak to Luna using your computer's microphone.
       * Luna can talk back to you in a natural-sounding voice.
       * The website will show you if Luna is "Listening..." or "Speaking...".
-  * **💬 Typing to Luna:**
-      * You can also type your questions and commands to Luna.
-      * You can send your message by pressing the Enter key.
+ 
   * **🧠 Luna's Smart Brain:**
       * The Python part of Luna uses Flask to understand what you type or say.
       * It uses TensorFlow and a special model (managed by `app.py`) to understand your language and create responses.
