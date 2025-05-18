@@ -18,7 +18,7 @@ Luna has many helpful features that use both its smart brain and the website:
       * The website will show you if Luna is "Listening..." or "Speaking...".
  
   * **🧠 Luna's Smart Brain:**
-      * The Python part of Luna uses Flask to understand what you type or say.
+      * The Python part of Luna uses Flask to understand what you say.
       * It uses TensorFlow and a special model (managed by `app.py`) to understand your language and create responses.
       * Luna can answer general questions and do specific things you ask.
   * **⏰ Remembering Things for You (Reminders):**
@@ -93,12 +93,12 @@ Once the website is open in your browser:
 1.  **Using Your Voice:** If your browser lets you and you give permission for the website to use your microphone, Luna will start listening. Just speak your commands or questions. The website will show "Listening..." when Luna is trying to hear you and "Speaking..." when Luna is talking back.
 
 3.  **Seeing the Replies:** Luna's text answers will show up in the chat area, and it will look like Luna is typing. If Luna is set up to speak, you will also hear the answer.
-4.  **Setting Reminders:** Say or type something like "remind me to check email in 20 minutes". The reminder will appear in the "Reminder" section when the time comes.
+4.  **Setting Reminders:** Say something like "remind me to check email in 20 minutes". The reminder will appear in the "Reminder" section when the time comes.
 5.  **Playing Music:** Try saying or typing "play some music" (this assumes you have music files set up for Luna to play).
-6.  **Searching the Web and YouTube:** Say or type "search Google for funny videos" or "search YouTube for cooking recipes".
+6.  **Searching the Web and YouTube:** Say "Open Google and search for the weather today" or "Open Youtube and search for, see you again meow meow version".
 7.  **Playing YouTube Videos:** Try saying or typing "play relaxing music on YouTube".
 
-### Examples of What to Say or Type:
+### Examples of What to Say:
 
   * **To set a reminder:** "remind me to take a break in 15 minutes"
   * **To play local music:** "play some music"
