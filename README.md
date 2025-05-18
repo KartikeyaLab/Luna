@@ -127,5 +127,5 @@ I am a developer passionate about creating helpful and innovative things. Luna i
 * **Portfolio:** [Kartikeya's Portfolio](http://kartikeyalab.github.io/kartikeya)
 * **GitHub:** [KartikeyaLab on GitHub](https://github.com/KartikeyaLab)
 * **Monkeytype:** [Kartikeya's Monkeytype Profile](https://monkeytype.com/profile/Karitkeya)
-* **YouTube Channel:** [My YouTube Channel](YOUR_YOUTUBE_CHANNEL_LINK)
-* **New Product Portfolio Builder:** [Portfolio Builder](https://kartikeyalab.github.io/PortfolioBuilder/)
+* **YouTube Channel:** [My YouTube Channel](https://www.youtube.com/@clever-ways)
+* **New Product Portfolio Builder:** [Portfolio Builder (Free)](https://kartikeyalab.github.io/PortfolioBuilder/)
