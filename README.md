@@ -87,7 +87,6 @@ Follow these detailed instructions to install and run Luna on your system:
 
 ### Example Interactions:
 
-* **Asking a question:** Type "What is the capital of France?" and press Enter.
 * **Setting a reminder:** Type "remind me to drink water in 30 minutes" and press Enter.
 * **Playing local music:** Type "play some music" and press Enter.
 * **Searching Google:** Type "open google and search for the latest news" and press Enter.
