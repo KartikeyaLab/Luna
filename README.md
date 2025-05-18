@@ -104,9 +104,9 @@ Once the website is open in your browser:
 
   * **To set a reminder:** "remind me to take a break in 15 minutes"
   * **To play local music:** "play some music"
-  * **To search Google:** "search Google for the weather today"
-  * **To search YouTube:** "search YouTube for cat videos"
-  * **To play a YouTube video:** "play a funny cat video on YouTube"
+  * **To search Google:** "Open Google and search for the weather today"
+  * **To search YouTube:** "Open Youtube and search for, see you again meow meow version"
+  * **To play a YouTube video:** "play Jaane na Dunga Kahin on YouTube"
 
 ### Step 6: Stopping Luna
 
