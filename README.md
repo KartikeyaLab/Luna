@@ -113,3 +113,11 @@ To stop Luna from running, go back to the terminal where you typed `python app.p
 ## 📜 License
 
 This project is free to use, change, and share under the [MIT License](https://opensource.org/licenses/MIT). This means you can do a lot with the code as long as you give credit to the original creators and include the license information.
+
+## 🧑‍💻 Author
+
+**Creator:** Kartikeya
+
+## ℹ️ About Me
+
+I am a developer passionate about creating helpful and innovative things. Luna is one of my projects made for fun.
