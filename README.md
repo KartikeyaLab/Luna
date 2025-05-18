@@ -16,9 +16,6 @@ Luna offers a rich set of features powered by its integrated backend and fronten
     * Utilizes the browser's Speech Recognition API for hands-free voice input. Simply speak to Luna through your microphone.
     * Employs the Web Speech Synthesis API to provide natural-sounding voice responses, enhancing the conversational flow.
     * Visually indicates the microphone status ("Listening...", "Speaking...") in the web interface.
-* **💬 Text-Based Interaction:**
-    * Allows you to communicate with Luna by typing your queries and commands into the input field.
-    * Supports sending messages by pressing the Enter key.
 * **🧠 Intelligent Backend Processing:**
     * Leverages a Python backend powered by Flask to handle user input.
     * Utilizes TensorFlow and a trained model (managed by `app.py`) for natural language understanding and response generation.
@@ -100,12 +97,11 @@ Follow these detailed instructions to install and run Luna on your system:
 Once the frontend is loaded in your browser:
 
 1.  **Voice Input:** If your browser supports it and you grant microphone access, Luna will start listening. You can speak your commands or questions. The "Microphone Status" will indicate when Luna is listening or speaking.
-2.  **Text Input:** Type your message into the text field at the bottom of the page and press Enter or click the send button (if a button is present in a more enhanced UI).
-3.  **Observe Responses:** Luna's text responses will appear in the chat container with a typing animation. If Luna is configured to speak, you will also hear the response.
-4.  **Set Reminders:** Use natural language like "remind me to call John in 1 hour". The reminder will be displayed in the "Reminder" section when it's triggered.
-5.  **Play Music:** Try commands like "play some music" (assuming you have audio files configured in the backend).
-6.  **Web and YouTube Search:** Use commands like "open google and search for the weather" or "open youtube and search for funny cats".
-7.  **Play YouTube Videos:** Try "play relaxing jazz on youtube".
+2.  **Observe Responses:** Luna's text responses will appear in the chat container with a typing animation. If Luna is configured to speak, you will also hear the response.
+3.  **Set Reminders:** Use natural language like "remind me to call John in 1 hour". The reminder will be displayed in the "Reminder" section when it's triggered.
+4.  **Play Music:** Try commands like "play some music" (assuming you have audio files configured in the backend).
+5.  **Web and YouTube Search:** Use commands like "open google and search for the weather" or "open youtube and search for funny cats".
+6.  **Play YouTube Videos:** Try "play relaxing jazz on youtube".
 
 
 
