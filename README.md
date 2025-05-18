@@ -94,9 +94,9 @@ Once the website is open in your browser:
 
 3.  **Seeing the Replies:** Luna's text answers will show up in the chat area, and it will look like Luna is typing. If Luna is set up to speak, you will also hear the answer.
 4.  **Setting Reminders:** Say something like "remind me to check email in 20 minutes". The reminder will appear in the "Reminder" section when the time comes.
-5.  **Playing Music:** Try saying or typing "play some music" (this assumes you have music files set up for Luna to play).
+5.  **Playing Music:** Try saying "play some music" (this assumes you have music files set up for Luna to play).
 6.  **Searching the Web and YouTube:** Say "Open Google and search for the weather today" or "Open Youtube and search for, see you again meow meow version".
-7.  **Playing YouTube Videos:** Try saying or typing "play relaxing music on YouTube".
+7.  **Playing YouTube Videos:** Try saying "play relaxing music on YouTube".
 
 ### Examples of What to Say:
 
