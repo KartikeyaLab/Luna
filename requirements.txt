@@ -1,0 +1,16 @@
+# Install all the dependencies listed in requirements.txt with: pip install -r requirements.txt
+
+Flask
+numpy
+scikit-learn
+tensorflow
+playsound==1.2.2
+deep-translator
+pygame
+yt-dlp
+pyaudio
+scipy
+edge-tts
+
+
+

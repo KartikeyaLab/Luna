@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luna</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #fff2d7;
+      }
+
+      #chat-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for webkit browsers */
+      }
+
+      #chat-container {
+        overflow: scroll;
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: transparent transparent; /* Firefox */
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        height: 460px;
+        overflow-y: scroll;
+        border: 1.5px solid #74512d;
+      }
+      #info-container {
+        width: 100%;
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 10px;
+        height: 50px;
+        font-size: 14px;
+        border: 1.5px solid #74512d;
+        font-family: "Poppins", serif;
+        font-weight: 500;
+        font-style: normal;
+      }
+      #reminder-container {
+        width: 100%;
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 10px;
+        height: 50px;
+        font-size: 14px;
+        border: 1.5px solid #74512d;
+        font-family: "Poppins", serif;
+        font-weight: 500;
+        font-style: normal;
+        display: none;
+      }
+
+      .main-contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        max-width: 94%;
+        margin: 0 auto;
+      }
+      .message {
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 14px;
+        max-width: 100%;
+        clear: both;
+      }
+
+      .user-message {
+        background-color: #ffebb7;
+        align-self: flex-end;
+        font-family: "Poppins", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 15px;
+        padding-left: 20px;
+      }
+
+      .luna-message {
+        background-color: #e6bc89;
+        align-self: flex-start;
+        font-size: 15px;
+        font-family: "Poppins", serif;
+        font-weight: 400;
+        font-style: normal;
+        padding-left: 20px;
+      }
+
+      #chat-input-container {
+        display: flex;
+        padding: 10px;
+        z-index: 100;
+        max-width: 100%;
+      }
+
+      #chat-input {
+        width: 80%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+      }
+
+      #mic-status {
+        color: #3e2723;
+        margin-bottom: 10px;
+      }
+
+      #listening-text {
+        color: #3e2723;
+      }
+
+      #reminderDisplay {
+        color: #3e2723;
+      }
+      h1 {
+        letter-spacing: -2px;
+        color: #74512d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="god">
+      <h1 style="text-align: center">Luna - Linear Unique Neural Assistant</h1>
+
+      <div id="chat-container"></div>
+
+      <div class="main-contain">
+        <div id="info-container">
+          <div id="mic-status">
+            Microphone Status: <span id="status">Listening...</span>
+          </div>
+          <div id="listening-text"></div>
+        </div>
+        <div id="reminder-container">
+          <div id="reminderDisplay"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let soniaVoice = null;
+      let isSpeaking = false;
+
+      function initializeVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        soniaVoice = voices.find(
+          (voice) =>
+            voice.name ===
+            "Microsoft Sonia Online (Natural) - English (United Kingdom)"
+        );
+
+        if (!soniaVoice) {
+          console.log("Microsoft Sonia voice not found. Using default voice.");
+        }
+      }
+
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = initializeVoices;
+      } else {
+        initializeVoices();
+      }
+
+      function displayMessage(message, isUser) {
+        const messageContainer = document.createElement("div");
+        messageContainer.classList.add("message");
+
+        if (isUser) {
+          messageContainer.classList.add("user-message");
+        } else {
+          messageContainer.classList.add("luna-message");
+        }
+
+        if (!isUser) {
+          const words = message.split(" ");
+          words.forEach((word, index) => {
+            const wordSpan = document.createElement("span");
+            wordSpan.textContent = word + " ";
+            wordSpan.style.opacity = 0;
+            wordSpan.style.transition = "opacity 0.4s ease-in";
+            messageContainer.appendChild(wordSpan);
+
+            setTimeout(() => {
+              wordSpan.style.opacity = 1;
+            }, index * 250); //  delay time
+          });
+        } else {
+          messageContainer.textContent = message;
+        }
+
+        document.getElementById("chat-container").appendChild(messageContainer);
+        document.getElementById("chat-container").scrollTop =
+          document.getElementById("chat-container").scrollHeight;
+      }
+
+      function speakText(text) {
+        if (text.trim() === "") {
+          alert("Please provide some text for speech.");
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        if (soniaVoice) {
+          utterance.voice = soniaVoice;
+        } else {
+          // alert("Sonia voice not found. Using default voice.");
+        }
+
+        utterance.onstart = () => {
+          isSpeaking = true;
+          recognition.stop();
+          document.getElementById("status").textContent = "Speaking...";
+          document.getElementById("status").style.color = "blue";
+        };
+
+        utterance.onend = () => {
+          isSpeaking = false;
+          recognition.start();
+          document.getElementById("status").textContent = "Listening...";
+          document.getElementById("status").style.color = "green";
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      const recognition = new (window.SpeechRecognition ||
+        window.webkitSpeechRecognition)();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onstart = function () {
+        if (!isSpeaking) {
+          document.getElementById("status").textContent = "Listening...";
+          document.getElementById("status").style.color = "green";
+        }
+      };
+
+      recognition.onend = function () {
+        if (!isSpeaking) {
+          document.getElementById("status").textContent = "Listening...";
+          document.getElementById("status").style.color = "green";
+          recognition.start();
+        }
+      };
+
+      recognition.onresult = function (event) {
+        if (isSpeaking) return;
+
+        let transcript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
+
+        if (event.results[event.results.length - 1].isFinal) {
+          document.getElementById("listening-text").textContent =
+            "You said: " + transcript;
+          sendMessage(transcript);
+        }
+      };
+
+      recognition.start();
+
+      function sendMessage(userInput) {
+        if (userInput.trim() === "") {
+          alert("Please enter a message.");
+          return;
+        }
+
+        displayMessage(userInput, true);
+
+        const normalizedInput = userInput
+          .toLowerCase()
+          .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "");
+
+        if (
+          normalizedInput.includes("what is the day today") ||
+          normalizedInput.includes("day today")
+        ) {
+          const now = new Date();
+          const today = now.toLocaleDateString("en-US", { weekday: "long" });
+          const lunaResponse = `Today is ${today}.`;
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        const responses = [
+          `Recently, over 1.39 lakh tech employees were laid off in 2024 by 451 companies, including giants like Intel, Dell, and Apple, due to cost-saving measures and automation adoption.`,
+          `Last year, a survey revealed that 73% of Amazon employees plan to quit as the company mandates a return to office work starting January 2025.`,
+          `Earlier this year, Samsung began laying off thousands of employees in Southeast Asia, Australia, and New Zealand, affecting 10% of its workforce outside South Korea.`,
+          `In a strange turn of events, a Railways worker in Bihar bit a snake twice after being bitten, following a local belief that this neutralizes venom. The snake died, and the worker was hospitalized.`,
+          `By 2030, AI is predicted to force nearly 12 million job changes, especially in healthcare, STEM, and administrative roles, as automation takes over many tasks.`,
+          `According to reports, Ola Electric plans to lay off 400-500 employees across various departments in the coming weeks, primarily due to cost-cutting efforts ahead of its IPO.`,
+          `Last year, 20,000 tech employees in India's IT sector faced "silent layoffs," with companies like TCS, Infosys, and Wipro using discreet methods such as non-renewed contracts.`,
+          `Recently, Microsoft announced it would lay off 1,500 employees from its Azure Cloud Unit, part of its broader strategy to focus on quantum computing and other growth areas.`,
+          `Google confirmed it laid off about 100 employees in its cloud unit, impacting roles in sales, consulting, and engineering as the company adapts to evolving business needs.`,
+          `Paytm will reportedly lay off around 5,000 to 6,300 employees, with the company aiming to save up to ₹400-500 crore annually by implementing AI-based cost-saving strategies.`,
+          `In May 2024, tech layoffs affected 9,742 employees across 39 companies, a sharp decline from the 21,473 job cuts in April of the same year.`,
+          `Tata Steel in the UK is planning to lay off 2,500 employees as it transitions to low-emission electric arc furnaces as part of a government-supported decarbonization plan.`,
+          `Recently, Media Chinese in Malaysia announced it would reduce its workforce by 44%, affecting around 800 employees, while also embracing AI to reduce costs and enhance digital content monetization.`,
+          `Paytm's CEO recently revealed that 5,000 to 6,300 employees would be laid off, as the company seeks to reduce expenses with AI-driven solutions.`,
+          `Last year, around 20,000 employees in India’s IT sector faced "silent layoffs," with companies like TCS and Wipro opting for voluntary resignations or internal transfers.`,
+          `Google's cloud division made significant layoffs, cutting about 100 employees, primarily from teams focused on consulting, partner engineering, and sustainability.`,
+          `A recent survey found that 73% of Amazon employees plan to quit after the company ended its work-from-home policy and mandated five days a week in-office work starting January 2025.`,
+          `Earlier this year, Samsung announced layoffs affecting 10% of its workforce in Southeast Asia, Australia, and New Zealand as part of a larger cost-cutting strategy.`,
+          `According to McKinsey, AI will drive around 12 million job changes by 2030, especially in sectors like healthcare, manufacturing, and administrative support.`,
+        ];
+
+        let usedResponses = new Set();
+
+        function getRandomResponse() {
+          const availableResponses = responses.filter(
+            (response, index) => !usedResponses.has(index)
+          );
+
+          if (availableResponses.length === 0) {
+            usedResponses.clear();
+            return getRandomResponse();
+          }
+
+          const randomIndex = Math.floor(
+            Math.random() * availableResponses.length
+          );
+          const lunaResponse = availableResponses[randomIndex];
+
+          const responseIndex = responses.indexOf(lunaResponse);
+          usedResponses.add(responseIndex);
+
+          return lunaResponse;
+        }
+
+        if (
+          normalizedInput.includes("can you share some statistics on it..") ||
+          normalizedInput.includes("statistics")
+        ) {
+          const lunaResponse = getRandomResponse();
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (
+          normalizedInput.includes("what day was it yesterday") ||
+          normalizedInput.includes("yesterday")
+        ) {
+          const now = new Date();
+          const yesterday = new Date(now);
+          yesterday.setDate(now.getDate() - 1);
+          const dayYesterday = yesterday.toLocaleDateString("en-US", {
+            weekday: "long",
+          });
+          const lunaResponse = `Yesterday was ${dayYesterday}.`;
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (
+          normalizedInput.includes("what day is it tomorrow") ||
+          normalizedInput.includes("tomorrow")
+        ) {
+          const now = new Date();
+          const tomorrow = new Date(now);
+          tomorrow.setDate(now.getDate() + 1);
+          const dayTomorrow = tomorrow.toLocaleDateString("en-US", {
+            weekday: "long",
+          });
+          const lunaResponse = `Tomorrow will be ${dayTomorrow}.`;
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("say hello to her")) {
+          const lunaResponse = "Hello, I am Luna. How are you?";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("history of ai")) {
+          const lunaResponse =
+            "Sure! AI has been imagined for centuries but was formally introduced in the 1950s. Advances in computing and big data have since made AI more powerful, leading to breakthroughs in healthcare, entertainment, and more. Today, AI is everywhere, shaping our lives and work!";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("alan turing")) {
+          const lunaResponse =
+            "Alan Turing, the father of modern computing, introduced the idea of a universal machine—what we now call a computer. In 1950, he proposed the Turing Test to measure machine intelligence, laying the foundation for Artificial Intelligence.";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+        if (normalizedInput.includes("say thank you to everyone")) {
+          const lunaResponse =
+            "Thank you all for your time and attention. This is Luna, wishing you all the best as we navigate the future together!";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("say hello to me")) {
+          const lunaResponse = "Hello sir. How are you?";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("say hello to him")) {
+          const lunaResponse = "Hello, I am Luna. How are you?";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (
+          normalizedInput.includes("she is fine") ||
+          normalizedInput.includes("shes great")
+        ) {
+          const lunaResponse =
+            "That's great.. Hope she is doing well and staying healthy.";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("he's fine")) {
+          const lunaResponse =
+            "That's good.. Hope he is doing well and staying healthy.";
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        if (normalizedInput.includes("say hello to")) {
+          const name = normalizedInput.split("say hello to")[1]?.trim();
+
+          if (name) {
+            const lunaResponse = `Hello ${name}, I am Luna. How are you?`;
+            displayMessage(lunaResponse, false);
+            speakText(lunaResponse);
+            return;
+          } else {
+            const lunaResponse = "Who should I say hello to?";
+            displayMessage(lunaResponse, false);
+            speakText(lunaResponse);
+            return;
+          }
+        }
+
+        if (normalizedInput.includes("time")) {
+          const now = new Date();
+          // Add 10 seconds to the current time
+          now.setSeconds(now.getSeconds());
+
+          const options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          };
+          const formattedDateTime = now.toLocaleDateString("en-US", options);
+          const lunaResponse = `It is currently ${formattedDateTime}.`;
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+          return;
+        }
+
+        $.post("/get_response", { user_input: userInput }, function (data) {
+          const lunaResponse = data.response;
+
+          displayMessage(lunaResponse, false);
+          speakText(lunaResponse);
+
+          $.post("/log_conversation", {
+            user_message: userInput,
+            luna_response: lunaResponse,
+          });
+        });
+      }
+
+      let isReminderSpoken = false;
+
+      function fetchReminder() {
+        fetch("/get_reminder")
+          .then((response) => response.json())
+          .then((data) => {
+            const reminderContainer =
+              document.getElementById("reminder-container");
+            const reminderDisplay = document.getElementById("reminderDisplay");
+
+            if (data.reminder) {
+              reminderDisplay.innerText = data.reminder;
+
+              if (!isReminderSpoken) {
+                speakText(data.reminder);
+                isReminderSpoken = true; // Set the flag to indicate that the reminder has been spoken
+              }
+
+              reminderContainer.style.display = "block";
+
+              setTimeout(() => {
+                reminderDisplay.innerText = ""; // Clear reminder from the UI
+
+                reminderContainer.style.display = "none";
+
+                isReminderSpoken = false;
+              }, 5000);
+            } else {
+              reminderContainer.style.display = "none";
+            }
+          })
+          .catch((error) => console.error("Error fetching reminder:", error));
+      }
+
+      setInterval(fetchReminder, 1000);
+    </script>
+  </body>
+</html>
