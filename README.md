@@ -118,14 +118,7 @@ This project is free to use, change, and share under the [MIT License](https://o
 
 **Creator:** Kartikeya
 
-## ℹ️ About Me
-
-I am a developer passionate about creating helpful and innovative things. Luna is one of my projects made for fun.
-
 ## 🔗 Connect with Me
 
 * **Portfolio:** [Kartikeya's Portfolio](http://kartikeyalab.github.io/kartikeya)
-* **GitHub:** [KartikeyaLab on GitHub](https://github.com/KartikeyaLab)
-* **Monkeytype:** [Kartikeya's Monkeytype Profile](https://monkeytype.com/profile/Karitkeya)
-* **YouTube Channel:** [My YouTube Channel](https://www.youtube.com/@clever-ways)
-* **New Product Portfolio Builder:** [Portfolio Builder (Free)](https://kartikeyalab.github.io/PortfolioBuilder/)
+* **Portfolio Builder:** [Portfolio Builder (Free)](https://kartikeyalab.github.io/PortfolioBuilder/)
